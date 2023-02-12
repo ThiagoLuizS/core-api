@@ -1,0 +1,22 @@
+spring:
+  config:
+    import: file:/opt/add/core/application-tenent.properties
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: true
+    add-properties: true
+  jpa:
+    show-sql: true
+  jackson:
+    serialization:
+      indent-output: true
+  main:
+    allow-circular-references: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://keycloak-corecase-hmg.somosadd.com.br/auth/realms/master
+          jwk-set-uri: https://keycloak-corecase-hmg.somosadd.com.br/auth/realms/master/protocol/openid-connect/certs

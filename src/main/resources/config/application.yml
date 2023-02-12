@@ -1,0 +1,56 @@
+server:
+  shutdown: graceful
+  servlet:
+    encoding.force: true
+    context-path: /core-api
+spring:
+  profiles:
+    active: dev
+  main:
+    allow-circular-references: true
+  application:
+    name: core-api
+  mvc:
+    throw-exception-if-no-handler-found: true
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      pool-name: CoreApiHikari
+      maximum-pool-size: 10
+      auto-commit: false
+  jackson:
+    deserialization.fail-on-unknown-properties: false
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+    properties:
+      hibernate.jdbc.time_zone: America/Fortaleza
+      hibernate.id.new_generator_mappings: true
+      hibernate.connection.provider_disables_autocommit: true
+      hibernate.current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+      hibernate.cache.use_second_level_cache: false
+      hibernate.cache.use_query_cache: false
+      hibernate.generate_statistics: false
+      hbm2ddl:
+        auto: none
+  mail.properties.mail:
+    transport:
+      protocol: smtp
+    smtp:
+      port: 587
+      auth: true
+      starttls:
+        required: true
+        enable: true
+  web:
+    locale: pt_BR
+    resources:
+      add-mappings: false
+springdoc:
+  packagesToScan: br.com.coreapi.controller
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false

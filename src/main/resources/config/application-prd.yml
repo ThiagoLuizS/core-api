@@ -1,0 +1,33 @@
+management:
+  endpoints:
+    web.exposure:
+      include: ['configprops', 'env', 'health', 'info', 'threaddump']
+spring:
+  config:
+    import: file:/opt/add/core-api/application.properties
+  jpa:
+    show-sql: false
+  task:
+    execution:
+      thread-name-prefix: core-task-
+      pool:
+        core-size: 2
+        max-size: 50
+        queue-capacity: 10000
+    scheduling:
+      thread-name-prefix: core-schd-
+      pool:
+        size: 2
+  devtools:
+    add-properties: false
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://keycloak-corecase-hmg.somosadd.com.br/auth/realms/master
+          jwk-set-uri: https://keycloak-corecase-hmg.somosadd.com.br/auth/realms/master/protocol/openid-connect/certs
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false
